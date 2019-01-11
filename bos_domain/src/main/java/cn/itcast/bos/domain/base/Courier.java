@@ -51,4 +51,115 @@ public class Courier {
 	@ManyToMany(mappedBy = "couriers")
 	private Set<FixedArea> fixedAreas = new HashSet<>();
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getCourierNum() {
+		return courierNum;
+	}
+
+	public void setCourierNum(String courierNum) {
+		this.courierNum = courierNum;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getPda() {
+		return pda;
+	}
+
+	public void setPda(String pda) {
+		this.pda = pda;
+	}
+
+	public Character getDeltag() {
+		return deltag;
+	}
+
+	public void setDeltag(Character deltag) {
+		this.deltag = deltag;
+	}
+
+	public String getCheckPwd() {
+		return checkPwd;
+	}
+
+	public void setCheckPwd(String checkPwd) {
+		this.checkPwd = checkPwd;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public String getVehicleNum() {
+		return vehicleNum;
+	}
+
+	public void setVehicleNum(String vehicleNum) {
+		this.vehicleNum = vehicleNum;
+	}
+
+	public Standard getStandard() {
+		return standard;
+	}
+
+	public void setStandard(Standard standard) {
+		this.standard = standard;
+	}
+
+	public TakeTime getTakeTime() {
+		return takeTime;
+	}
+
+	public void setTakeTime(TakeTime takeTime) {
+		this.takeTime = takeTime;
+	}
+
+	public Set<FixedArea> getFixedAreas() {
+		return fixedAreas;
+	}
+
+	public void setFixedAreas(Set<FixedArea> fixedAreas) {
+		this.fixedAreas = fixedAreas;
+	}
 }

@@ -36,4 +36,76 @@ public class Standard implements Serializable{
 	@Column(name = "C_OPERATING_COMPANY")
 	private String operatingCompany; // 操作单位
 
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getMinWeight() {
+		return minWeight;
+	}
+
+	public void setMinWeight(Integer minWeight) {
+		this.minWeight = minWeight;
+	}
+
+	public Integer getMaxWeight() {
+		return maxWeight;
+	}
+
+	public void setMaxWeight(Integer maxWeight) {
+		this.maxWeight = maxWeight;
+	}
+
+	public Integer getMinLength() {
+		return minLength;
+	}
+
+	public void setMinLength(Integer minLength) {
+		this.minLength = minLength;
+	}
+
+	public Integer getMaxLength() {
+		return maxLength;
+	}
+
+	public void setMaxLength(Integer maxLength) {
+		this.maxLength = maxLength;
+	}
+
+	public Date getOperatingTime() {
+		return operatingTime;
+	}
+
+	public void setOperatingTime(Date operatingTime) {
+		this.operatingTime = operatingTime;
+	}
+
+	public String getOperator() {
+		return operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
+
+	public String getOperatingCompany() {
+		return operatingCompany;
+	}
+
+	public void setOperatingCompany(String operatingCompany) {
+		this.operatingCompany = operatingCompany;
+	}
 }

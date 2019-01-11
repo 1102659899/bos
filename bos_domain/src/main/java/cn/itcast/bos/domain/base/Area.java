@@ -1,5 +1,6 @@
 package cn.itcast.bos.domain.base;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ import lombok.Data;
 @Data
 @Table(name = "T_AREA")
 @XmlRootElement(name = "area")
-public class Area {
+public class Area implements Serializable{
 
 	@Id
 	@Column(name = "C_ID")
@@ -37,7 +38,72 @@ public class Area {
 	@Column(name = "C_SHORTCODE")
 	private String shortcode; // 简码
 
+
 	@OneToMany(mappedBy = "area")
 	private Set<SubArea> subareas = new HashSet<SubArea>();
 
+	public String getId() {
+
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public String getCitycode() {
+		return citycode;
+	}
+
+	public void setCitycode(String citycode) {
+		this.citycode = citycode;
+	}
+
+	public String getShortcode() {
+		return shortcode;
+	}
+
+	public void setShortcode(String shortcode) {
+		this.shortcode = shortcode;
+	}
+
+	public Set<SubArea> getSubareas() {
+		return subareas;
+	}
+
+	public void setSubareas(Set<SubArea> subareas) {
+		this.subareas = subareas;
+	}
 }
