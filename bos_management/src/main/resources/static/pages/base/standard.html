@@ -30,10 +30,38 @@
 					pageList: [30,50,100],
 					pagination : true,
 					toolbar : toolbar,
-					url : "../../data/standard.json",
+					url : "../../standard/findPage",
 					idField : 'id',
 					columns : columns
 				});
+
+
+
+				$("#save").click(function () {
+					if($("#standardForm").form('validate')){
+					    $.post("../../standard/save",$("#standardForm").serialize(),function (data) {
+							if(data.success){
+							    $.messager.show({
+									title:'提示窗口',
+									msg:data.message,
+								})
+								//重置表单
+								$("#standardForm").get(0).reset();
+                                //刷新列表
+							    $("#grid").datagrid('reload')
+                                //关闭窗口
+								$("#mywindows").window('close')
+
+							}
+                        })
+					}else {
+					    $.messager.alert('警告',"还有非法字符","warning")
+					}
+
+                })
+
+
+
 			});	
 			
 			//工具栏
@@ -42,21 +70,51 @@
 				text : '增加',
 				iconCls : 'icon-add',
 				handler : function(){
-					alert('增加');
+                $("#mywindows").window('open')
+
+					$("#standardForm").form('clear')
 				}
 			}, {
 				id : 'button-edit',
 				text : '修改',
 				iconCls : 'icon-edit',
 				handler : function(){
-					alert('修改');
-				}
+                    var rows = $("#grid").datagrid('getSelections');
+                    if(rows.length!=1){
+                        $.messager.alert("提示信息","修改数据时,只能选中一行",'warning')
+                    }else {
+                        var row = rows[0];
+
+                        $("#standardForm").form('load',row);
+
+                        $("#mywindows").window('open')
+
+					}
+
+                }
 			},{
 				id : 'button-delete',
 				text : '作废',
 				iconCls : 'icon-cancel',
 				handler : function(){
-					alert('作废');
+					var rows = $("#grid").datagrid('getSelections');
+					
+					 var id=new Array()
+                    for(var i=0;i<rows.length;i++){
+                        id[i] = rows[i].id
+                    }
+					
+                    $.post("../../standard/delete?id="+id,function (data) {
+                            $.messager.show({
+                                title:'提示窗口',
+                                msg:data.message,
+                            })
+                        $("#grid").datagrid('reload')
+                        $("#grid").datagrid('clearSelections')
+
+                    })
+
+
 				}
 			},{
 				id : 'button-restore',
@@ -119,8 +177,8 @@
 		<div region="center" border="false">
 			<table id="grid"></table>
 		</div>
-		
-		<div class="easyui-window" title="对收派标准进行添加或者修改" id="standardWindow" collapsible="false" minimizable="false" maximizable="false" modal="true" closed="true" style="width:600px;top:50px;left:200px">
+
+		<div id="mywindows" class="easyui-window" title="对收派标准进行添加或者修改" id="standardWindow" collapsible="false" minimizable="false" maximizable="false" modal="true" closed="true" style="width:600px;top:50px;left:200px">
 			<div region="north" style="height:31px;overflow:hidden;" split="false" border="false">
 				<div class="datagrid-toolbar">
 					<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true">保存</a>
@@ -128,8 +186,8 @@
 			</div>
 
 			<div region="center" style="overflow:auto;padding:5px;" border="false">
-				
-				<form>
+
+				<form id="standardForm">
 					<table class="table-edit" width="80%" align="center">
 						<tr class="title">
 							<td colspan="2">收派标准信息
@@ -169,10 +227,20 @@
 								<input type="text" name="maxLength" class="easyui-numberbox" required="true" />
 							</td>
 						</tr>
+
 					</table>
 				</form>
+				</div>
 			</div>
-		</div>
+
+
+
+
+
+
+
+
 	</body>
+
 
 </html>
